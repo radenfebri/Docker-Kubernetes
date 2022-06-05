@@ -1,0 +1,2 @@
+docker commit namaContainer namaImage
+docker push radenfebri/namaImage:tagsendiri

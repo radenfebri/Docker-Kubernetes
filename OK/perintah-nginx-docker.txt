@@ -1,0 +1,18 @@
+menggunakan linux ubuntu :
+docker run -d -t --name linux-ubuntu ubuntu
+docker ps
+docker exec -it linux-ubuntu bash (bash nama comand)
+cat /etc/os-release (cek os)
+
+docker pull nginx
+docker run -d -t -p 80:80 --name nginx nginx
+docker exec -t namaContainer bash
+
+
+
+menggunakan nginx alpine :
+docker run -d -t -p 80:80 --name nginx nginx:alpine
+docker ps
+bikin file html dll sesuai direktori lokal
+docker cp index.html nginx:/usr/share/nginx/html/index.html (untuk copy data local ke docker)
+docker run -d -p 80:80 -v $pwd/conf:/etc/nginx -v $pwd/html:/srv/www my-nginx

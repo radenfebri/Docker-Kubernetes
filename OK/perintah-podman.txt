@@ -1,0 +1,156 @@
+---------------- 1. Pengenalan Tenologi Container --------------
+REFERENSI : https://www.youtube.com/watch?v=R3n0j-0s4Mc&ab_channel=KOMINFODTSLiveSession
+
+
+
+
+
+---------------- 2. Membuat Layanan Container --------------
+REFERENSI : https://www.youtube.com/watch?v=zrlxtEMiz-s&ab_channel=KOMINFODTSLiveSession
+
+
+
+
+
+----------------- 3. Mengatur Container --------------
+REFERENSI : https://www.youtube.com/watch?v=4a6CKjnbS2s&ab_channel=KOMINFODTSLiveSession
+lab container-create start
+podman login registry.redhat.io
+usernam:radenfebri
+password:Febri_2303
+podman images (melihat image)
+podman run --name mysql-basic -e MYSQL_USER=radenfebri -e MYSQL_PASSWORD=radenfebri -e MYSQL_DATABASE=radenfebri -e MYSQL_ROOT_PASSWORD=radenfebri -d registry.redhat.io/rhel8/mysql-80:1 (backslash maksudnya masih lanjut perintahnya)
+podman search mysql (mencari image)
+podman ps -a (melihat container yang berjalan)
+podman exec -it mysql-basic /bin/bash (mengaksesnya)
+mysql -u root (login dengan root di mysql)
+show databases (melihat database)
+use namadatabases; (masuk ke dalam database tsb)
+show tables; (melihat table)
+create table namatabel (id int NOT NULL, 
+    -> name varchar(255) DEFAULT NULL,
+    -> code varchar(255) DEFAULT NULL,
+    -> PRIMARY KEY (id));
+(perintah membuat table)
+show tables; (melihat table)
+desc items; (melihat struktur datatable)
+insert namatabel (id , name, code) value (1, 'Devops', 'DO180');
+(perintah untuk insert data)
+select * from namatabel; (melihat data database yang terbuat)
+exit (keluar dari mysql)
+exit (keluar dari container)
+podman rm -f namacontainer / podman kill (memkasa hapus dan berheni pada container)
+podman rmi idimage (menghapus image)
+podman rm -a (menghapus semua container)
+podman stop -a (menghentikan semua container)
+
+
+
+
+
+----------------- 4. Mengatur Container dan Container Image --------------
+REFERENSI : https://www.youtube.com/watch?v=tnt5iwTQqto&ab_channel=KOMINFODTSLiveSession
+grep redhat.io /etc/containers/registries.conf (repository yang bisa kita cari)
+lab manage-lifecycle start 
+podman run --name mysql -d -e MYSQL_USER=radenfebri -e MYSQL_PASSWORD=radenfebri -e MYSQL_DATABASE=radenfebri -e MYSQL_ROOT_PASSWORD=radenfebri registry.redhat.io/rhel8/mysql-80:1 (pulling image)
+podman ps --format="{{.ID}} {{.Names}} {{.Status}}" (informasi pada container berdasarkan format tsb)
+cat DO180/labs/manage-lifecycle/db.sql (melihat data yang sebelumnya sudah di buat pertemuan 2)
+podman cp /home/student/DO180/labs/manage-lifecycle/db.sql namaContainer:/
+podman cp /home/student/DO180/labs/manage-lifecycle/db.sql mysql:/ (contoh copy data pada container pada root)
+podman exec mysql /bin/bash -c 'mysql -uradenfebri -pradenfebri items < /db.sql' (Script yang akan diambil dari container mysql sebelumnya)
+podman run --name mysql-2 -it registry.redhat.io/rhel8/mysql-80:1 /bin/bash (langsung Mengeksekusi di dalam container)
+podman exec mysql /bin/bash -c 'mysql -uradenfebri -pradenfebri -e "select * from items.Project"' (melihat data langsung)
+ls -lz (melihat konteksnya)
+ls -ldZ /tmp (melihat konteksnya /tmp)
+sudo getenforce (melihat selinux active atau tidak) 
+more grep selinux /etc/selinux/config (melihat selinux)
+lab manage-storage start
+mkdir -pv /home/student/local/mysql (membuat folder dan menciptalan child folder)
+sudo semanage fcontext -a -t container_file_t '/home/local/mysql(/.*)?'  (semua folder nanti akan memilih content ini)
+sudo semanage fcontext -l | grep local (untuk memasitakn sudah terbuat atau belum)
+ls -ldZ /home/student/local/mysql/ (memberikan akses default:user_home_t)
+sudo restorecon -R /home/student/local/mysql/ (memberikan akses ganti:reconatiner_file_t)
+podman unshare chown 27:27 /home/student/local/mysql
+podman run --name persist-db -d -v /home/student/local/mysql:/var/lib/mysql/data -e MYSQL_USER=radenfebri -e MYSQL_PASSWORD=radenfebri -e MYSQL_DATABASE=radenfebri -e MYSQL_ROOT_PASSWORD=radenfebri registry.redhat.io/rhel8/mysql-80:1  (data harus disamakan -v adalah mounting dari local ke container)
+lab manage networking start
+podman run --name mysqldb-port -d -v /home/student/local/mysql:/var/lib/mysql/data -p 13306:3306 -e MYSQL_USER=radenfebri -e MYSQL_PASSWORD=radenfebri -e MYSQL_DATABASE=radenfebri -e MYSQL_ROOT_PASSWORD=radenfebri registry.redhat.io/rhel8/mysql-80:1 (EXPOSE container dengan port)
+mysql -uradenfebri -h 127.0.0.1 -pradenfebri -P13306 items < /home/student/DO180/labs/manage-networking/db.sql (populasi akan mengambil sql)
+podman exec -it mysqldb-port mysql -uroot items -e "SHOW tables" (tanpa masuk container exec)
+podman exec -it mysqldb-port mysql -uroot items -e "SELECT * FROM items" (tanpa masuk container exec)
+
+
+podman run -d --name apache2 -p 127.0.0.1:8081:80 registry.redhat.io/rhel8/httpd-24 (mapping container)
+
+podman run --name mysql-db -d -v /home/student/local/mysql:/var/lib/mysql/data -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_DATABASE=db MYSQL_ROOT_PASSWORD=root  -p 13306:3306 registry.redhat.io/rhel8/mysql-80 (bikin dengan port)
+
+
+
+
+
+
+-------------------------- Docker ----------------------------
+docker run --name "namacontainer" --volumes-from "container-yang-dicopy" -d -p 8080:80 nginx (copy volumes)
+
+sebelum melakukan docker build, harus masuk kedalam folder dockerfile itu berada
+docker build -t "namadirektorilocal":tag . (build docker)
+docker build -t radenfebri/nginx:latest .
+
+------------------------ Docker user-services-api -----------------------
+dipastikan sudah install node js
+bikin folder 
+npm init
+dan enter semua dan kalau sudah selesai otomatis ada file package.js
+npm install --save express
+bikin file index.js
+node index.js (jalankan api)
+
+
+--------------------- Mengatur Container dan Container Image -----------------
+grep redhat.io/etc/containers/registries.conf (melihat bahawa kita sudah memiliki repository dan bisa mengaksesnya)
+lab manage-lifecycle start
+podman run --name mysql-db registry.redhat.io/rehl8/mysql-80:1
+podman run --name mysql-db \
+-e MYSQL_USER=radenfebri -e MYSQL_PASSWORD=radenfebri \
+-e MYSQL_DATABASE=radenfebri -e MYSQL_ROOT_PASSWORD=radenfebri \
+-d registry.redhat.io/rhel/mysql-80:1
+cat DO180/labs/manage-lifecycle/db.sql (melihat data sql)
+podman cp /home/student/labs/manage-lifecycle/db.sql mysql:/
+
+
+
+
+
+------------------------ Docker & Podman Openshift Membuat Container Image yang di custom ----------------------
+lab dockerfile-create start
+cd DO180/labs/dockerfile-create/(lokasi bikin working direktori)
+vim Containerfile
+FROM ubi8/ubi:8.3
+MAINTAINER Febri <febriye12@gmail.com>
+LABEL description"A Custom Apache container based on UBI 8"
+
+RUN yum install -y httpd && \
+    yum clean all
+
+RUN echo "Hello from container" >> /var/www/html/index.html
+
+EXPOSE 80
+
+CMD ["httpd", "-D", "FOREGROUND"]
+
+ctrl+c (untuk menyelesaikan Command)
+:w (untuk save)
+:wq (untuk save dan quit)
+
+cat Containerfile
+podman build --layers=false -t do180/apache . (menjalankan perintah Dockerfile)
+podman inspect do180/apache (untuk melihat data-data yang berada didalam image tsb)
+podan run --name coba-custom -d -p 10080:80 do180/apache
+curl localhost:10080 (menampilkan hasil)
+
+
+----------------------------- Podman Menerapkan aplikasi berbasis Container di Openshift -------------------------
+cat /usr/local/etc/opc4.config
+
+
+
+

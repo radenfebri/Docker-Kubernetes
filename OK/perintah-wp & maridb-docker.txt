@@ -1,0 +1,43 @@
+contoh bikin projek wordpress:
+
+version: '3.7'
+
+services:
+  
+  db:
+    image: mariadb
+    container_name: wp-demo1
+    restart: always
+
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./backups:/backups
+
+    environment:
+        MYSQL_DATABASE: wpdemo
+        MYSQL_USER: radenfebri
+        MYSQL_PASSWORD: Radenfebri_123
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+        MYSQL_RANDOM_ROOT_PASSWORD: password
+
+  wordpress:
+      image: wordpress:latest
+      container_name: wp-demo2
+      restart: always
+      depends_on: ['db']
+      ports: ['80:80']
+      links: ['db:db']
+      volumes:
+        - './wp_data:/var/www/html'
+
+      environment:
+        WORDPRESS_DB_HOST: db
+        WORDPRESS_DB_NAME: wpdemo
+        WORDPRESS_DB_USER: radenfebri
+        WORDPRESS_DB_PASSWORD: Radenfebri_123
+        
+volumes:
+  db_data: {}
+
+docker-compose up -d
+docker ps

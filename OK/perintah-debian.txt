@@ -1,0 +1,5 @@
+docker pull debian
+docker run -d -t -p 80:80 --name nginx nginx:alpine
+docker ps
+docker exec -it linux-debian bash (nama command dilihat pada docker ps)\
+cat /etc/os-release (cek os)

@@ -1,0 +1,70 @@
+docker version (Melihat Version Docker)
+https://hub.docker.com/ (Web untuk Pull image)
+docker pull mysql (contoh pull image docker pull "nama image")
+docker image pull mysql:latest (Untuk download latest version)
+docker image rm alpine:latest (Perintah untuk menghapus Image)
+docker container ls -a (Melihat semua container yang sedang berjalan atau tidak)
+docker container ls (Melihat container yang sedang berjalan saja)
+docker container create --name namacontainer namaimage:tag (Cara membuat containernya)
+docker container start containerID/namacontainer (Menjalankan Container)
+docker container stop containerID/namacontainer (Mematikan Container)
+docker container rm containerID/namacontainer (Menghapus Container)
+docker container logs containerID/namacontainer (Melihat log Container)
+docker container logs -f containerID/namacontainer (Melihat log secara realtime Container)
+docker container exec -i -t containerID/namaContainer /bin/bash (Mengeksekusi Program Script dalam Container)
+redis-cli (Untuk masuk ke redis)
+set radenfebri "Hellow World" (Membuat Data)
+get radenfebri (Menampilkan isi data)
+exit (untuk keluar)
+docker container create --name namacontainer --publish posthost:portcontainer image:tag (Forwarding Port)
+docker container create --name contohnginx --publish 8080:80 nginx:latest (Contoh diatas)
+docker container create --name namacontainer --env KEY="value" --env KEY2="value" image:tag
+docker container create --name contohmongo --publish 27017:27017 --env MONGO_INITDB_ROOT_USERNAME=radenfebri --env MONGO_INITDB_ROOT_PASSWORD=Febri2303 mongo:latest (latest)
+docker ps -aq (untuk melihat docker id yang ada)
+docker rm $(docker ps -aq) (remove semua id yang ada disitu)
+docker rm -f $(docker ps -aq) (remove semua id container yang ada disitu)
+docker rm -f website (remove container tanpa stop)
+.dockerignore (digunakan untuk menambhakan sebuah package contoh ada pad folder user-services-api)
+docker build -t user-services-api:latest . (untuk menjalankan Dockerfile dan setiap ada perubahan harus di build ulang)
+npm install -S react webpack gulp grunt (install npm di user-service-api)
+docker run --name user-api -d -p 3000:3000 user-service-api:latest (mencoba menggunakan image custom)
+docker inspect namacontainer (melihat detail container)
+
+
+------------------- Docker Format-----------------------
+docker ps --format="ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCommand\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"
+
+------------------- Docker Mounting NGINX -------------------
+docker run --name website -d -p 8080:80 -v c:\docker\project\website:/usr/share/nginx/html nginx:alpine (c:\docker\project\website = letak project local)
+docker exec -it website /bin/sh (masuk ke nginx)
+touch about.html (membikin file)
+
+
+contoh bikin phpmyadmin:
+docker pull phpmyadmin
+docker pull wordpress
+bikin folder->bikin file
+docker-compose.yml
+services:
+  
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+    restart: always
+    ports:
+      - "8080:80"
+docker-compose -f stack.yml up
+docker-compose up -d
+docker ps
+
+
+
+
+
+
+
+
+
+

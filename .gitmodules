@@ -1,3 +1,0 @@
-[submodule "Docker-Kubernetes"]
-	path = Docker-Kubernetes
-	url = https://github.com/radenfebri/Docker-Kubernetes.git
