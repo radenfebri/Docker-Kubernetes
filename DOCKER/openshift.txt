@@ -87,6 +87,41 @@ podman run --name mysql-db -d -v /home/student/local/mysql:/var/lib/mysql/data -
 
 
 
+------------------------------- 8.Menerapkan aplikasi berbasis beberapa Container -------------------------
+REFERENSI : https://www.youtube.com/watch?v=39YgcUpKCw0&ab_channel=KOMINFODTSLiveSession
+lab-configure
+enter API Endpoint :
+enter Username :
+enter Password :
+enter Github Account Name :
+enter Quay.io Account Name :
+cat /usr/local/etc/opc4.conf (melihat direktori)
+source /usr/local/etc/opc4.conf (untuk config)
+oc login -u ${RHT_OCP_DEV_USER} \
+-p ${RHT_OCP_DEV_PASSWORD} ${RHT_OCP_MASTER_API} (konfigurasi login)
+oc new-project ${RHT_OCP_DEV_USER}-route
+oc get project (melihat project kita)
+oc new-app \
+--docker-image=quay.io/redhattraining/php-hello-dockerfile \
+--name php-helloworld (bikin projek)
+oc get deployment (melihat deployment)
+oc get pod (melihat pod)
+oc get service (melihat services)
+oc status (menampilkan status)
+oc logs -f php-helloworld-1973h1i2rbb-123jbj (melihat logs)
+oc get svc (melihat service)
+oc describe svc php-helloworld (melihat detail service)
+oc expose svc/php-helloworld (membuat route expose nama project)
+oc get route (menampilkan route service) 
+oc describe route php-helloworld (menampilakn detail dari service)
+curl php-helloworld-tfdsn.apps.route.apps.ap46a.prod.cle.redhat.com (dengan menggunakan request Host)
+oc expose svc/php-helloworld \
+--name=${RHT_OCP_DEV_USER}-xyz (membuat service yang sama dengan sedikit penambahan dengan nama route yng beda)
+oc delete route php-helloworld (delete route)
+lab openshift-route finish (menyelesaikan project)
+ 
+
+
 
 -------------------------- Docker ----------------------------
 docker run --name "namacontainer" --volumes-from "container-yang-dicopy" -d -p 8080:80 nginx (copy volumes)
