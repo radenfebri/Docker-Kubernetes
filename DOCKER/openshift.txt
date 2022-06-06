@@ -97,9 +97,9 @@ enter Github Account Name :
 enter Quay.io Account Name :
 cat /usr/local/etc/opc4.conf (melihat direktori)
 source /usr/local/etc/opc4.conf (untuk config)
-oc login -u ${RHT_OCP_DEV_USER} \
--p ${RHT_OCP_DEV_PASSWORD} ${RHT_OCP_MASTER_API} (konfigurasi login)
-oc new-project ${RHT_OCP_DEV_USER}-route
+oc login -u ${RHT_OCP4_DEV_USER} \
+-p ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API} (konfigurasi login)
+oc new-project ${RHT_OCP4_DEV_USER}-route
 oc get project (melihat project kita)
 oc new-app \
 --docker-image=quay.io/redhattraining/php-hello-dockerfile \
@@ -116,10 +116,44 @@ oc get route (menampilkan route service)
 oc describe route php-helloworld (menampilakn detail dari service)
 curl php-helloworld-tfdsn.apps.route.apps.ap46a.prod.cle.redhat.com (dengan menggunakan request Host)
 oc expose svc/php-helloworld \
---name=${RHT_OCP_DEV_USER}-xyz (membuat service yang sama dengan sedikit penambahan dengan nama route yng beda)
+--name=${RHT_OCP4_DEV_USER}-xyz (membuat service yang sama dengan sedikit penambahan dengan nama route yng beda)
 oc delete route php-helloworld (delete route)
 lab openshift-route finish (menyelesaikan project)
- 
+git config --global credential.helper cache
+git clone https://github.com/radenfebri/DO180-apps
+git checkout -b testbranch (membuat branch)
+echo "DO180" > TEST
+git add .
+git commit -am "DO180"
+git push --set-upstream origin testbranch
+masukkan Username : radenfebri
+masukkan password : api token
+lab openshift-s2i start
+cd DO180-apps/
+git checkout master
+git checkout -b s2i
+git push -u origin s2i
+ls php-helloworld (melihat isi folder)
+cat php-helloworld/index.php (melihat index yang dalam folder)
+source /usr/local/etc/opc4.config
+oc login -u ${RHT_OCP4_DEV_USER} -p ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API}
+oc new-project ${RHT_OCP4_DEV_USER}-s2i
+oc get project 
+oc new-app php:7.3 --name=php-helloworld https://github.com/radenfebri/${RHT_OCP4_GITHUB_USER}/DO180-apps#s2i --context-dir php-helloworld (membuat aplikasi php setelah #s2i = branch)
+oc get pod 
+oc logs --all-containers -f php-helloworld-l-build (semua logs)
+oc get describe deployment php-helloworld
+cd php-helloworld vim index.php (masuk dir)
+vim index
+lakukan perubahan di dalamnya
+git add .
+git commit -am "DO180"
+git push origin s2i
+masukkan user :
+masukkan Password :
+oc start-build php-helloworld (membuild baru)
+
+
 
 
 
