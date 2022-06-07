@@ -114,13 +114,13 @@ oc describe svc php-helloworld (melihat detail service)
 oc expose svc/php-helloworld (membuat route expose nama project)
 oc get route (menampilkan route service) 
 oc describe route php-helloworld (menampilakn detail dari service)
-curl php-helloworld-tfdsn.apps.route.apps.ap46a.prod.cle.redhat.com (dengan menggunakan request Host)
+curl php-helloworld-tfdsn.apps.route.apps.ap46a.prod.ole.redhat.com (dengan menggunakan request Host)
 oc expose svc/php-helloworld \
 --name=${RHT_OCP4_DEV_USER}-xyz (membuat service yang sama dengan sedikit penambahan dengan nama route yng beda)
 oc delete route php-helloworld (delete route)
-lab openshift-route finish (menyelesaikan project)
+lab openshift-routes finish (menyelesaikan project)
 git config --global credential.helper cache
-git clone https://github.com/radenfebri/DO180-apps
+git clone https://github.com/radenfebri/DO180-apps.git
 git checkout -b testbranch (membuat branch)
 echo "DO180" > TEST
 git add .
