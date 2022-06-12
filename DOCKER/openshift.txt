@@ -16,6 +16,7 @@ REFERENSI : https://www.youtube.com/watch?v=zrlxtEMiz-s&ab_channel=KOMINFODTSLiv
 REFERENSI : https://www.youtube.com/watch?v=4a6CKjnbS2s&ab_channel=KOMINFODTSLiveSession
 lab container-create start
 podman login registry.redhat.io
+podman login quay.io
 usernam:radenfebri
 password:Febri_2303
 podman images (melihat image)
@@ -95,8 +96,8 @@ enter Username :
 enter Password :
 enter Github Account Name :
 enter Quay.io Account Name :
-cat /usr/local/etc/opc4.conf (melihat direktori)
-source /usr/local/etc/opc4.conf (untuk config)
+cat /usr/local/etc/ocp4.config (melihat direktori)
+source /usr/local/etc/ocp4.config (untuk config)
 oc login -u ${RHT_OCP4_DEV_USER} \
 -p ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API} (konfigurasi login)
 oc new-project ${RHT_OCP4_DEV_USER}-route
@@ -135,7 +136,7 @@ git checkout -b s2i
 git push -u origin s2i
 ls php-helloworld (melihat isi folder)
 cat php-helloworld/index.php (melihat index yang dalam folder)
-source /usr/local/etc/opc4.config
+source /usr/local/etc/ocp4.config
 oc login -u ${RHT_OCP4_DEV_USER} -p ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API}
 oc new-project ${RHT_OCP4_DEV_USER}-s2i
 oc get project 
@@ -218,7 +219,7 @@ curl localhost:10080 (menampilkan hasil)
 
 
 ----------------------------- Podman Menerapkan aplikasi berbasis Container di Openshift -------------------------
-cat /usr/local/etc/opc4.config
+cat /usr/local/etc/ocp4.config
 
 
 
