@@ -61,11 +61,11 @@ kubectl delete namespace nama-namespace (menghapus namespace)
 
 
 ---------------------------- Perintah kubernetes Probe ---------------------------------------
+kubectl create -f namafile.yaml (membuat Probe dengan yaml)
 
 
 
 kubectl delete -n default deployment mongo-depl (untuk delete deployment "mongo-depl = nama deployment")
 kubectl delete -n default pod mongo-depl-85dcbc595b-wz45j (untuk delete pod "mongo-depl-85dcbc595b-wz45j = nama pod")
 kubectl exec -it mongo-depl-85dcbc595b-wz45j -- bin/bash (mengakses mongo melalui exec)
-kubectl create -f filepod.yaml (cara bikin pod melalui yaml)
 
