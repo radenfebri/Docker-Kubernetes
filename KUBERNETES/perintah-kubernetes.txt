@@ -18,9 +18,12 @@ kubectl get node (untuk melihat semua node)
 kubectl describe node namanode (melihat detail node)
 
 ---------------------------- Perintah kubernetes Pod ---------------------------------------
-
+kubectl create -f filepod.yaml (membuat pod)
 kubectl get pod (untuk melihat semua pod)
+kubectl get pod -o wide (untuk melihat semua pod detail + ip address)
 kubectl describe pod namapod (melihat detail pod)
+kubectl port-forward namapod portAkses:portPod (cara mengakses pod )
+example (kubectl port-forward namapod 8888:80)
 
 kubectl create deployment nginx-depl --image=nginx (membuat deployment nginx)
 kubectl get deployment (menampilkan hasil deployment)
