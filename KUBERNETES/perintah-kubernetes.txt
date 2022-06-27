@@ -16,6 +16,7 @@ kubectl -n kubernetes-dashboard delete clusterrolebinding admin-user (delete clu
 ---------------------------- Perintah kubernetes Node ---------------------------------------
 kubectl get node (untuk melihat semua node)
 kubectl describe node namanode (melihat detail node)
+kubectl logs namapod (melihat logs nginx)
 
 
 ---------------------------- Perintah kubernetes Pod ---------------------------------------
@@ -37,14 +38,18 @@ kubectl get pods -l '!environment' (mencari label yang tidak punya label environ
 kubectl get pods -l 'environment in (production, development)' (mencari berdasrkan key yang detail)
 
 
+---------------------------- Perintah kubernetes Annotation ---------------------------------------
+kubectl annotate pod namapod key=value (menambahan Annotation)
+example (kubectl annotate pod nginx-with-label description="saya mencoba menambahkan annotation")
+kubectl annotate pod namapod key=value --overwrite (mengganti Annotation secara paksa)
 
-kubectl create deployment nginx-depl --image=nginx (membuat deployment nginx)
-kubectl get deployment (menampilkan hasil deployment)
-kubectl get pod (menampilkan pod)
-kubectl get pods -o wide (menampilkan lebih detail tentang pods)
-kubectl logs namapod (melihat logs nginx)
-kubectl logs namapod (melihat logs mongo)
-kubectl describe pod mongo-depl-85dcbc595b-wz45j (untuk mengetahui pod)
+
+
+
+
+
+
+
 kubectl delete -n default deployment mongo-depl (untuk delete deployment "mongo-depl = nama deployment")
 kubectl delete -n default pod mongo-depl-85dcbc595b-wz45j (untuk delete pod "mongo-depl-85dcbc595b-wz45j = nama pod")
 kubectl exec -it mongo-depl-85dcbc595b-wz45j -- bin/bash (mengakses mongo melalui exec)
