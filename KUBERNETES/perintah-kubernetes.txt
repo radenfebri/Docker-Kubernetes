@@ -26,6 +26,12 @@ kubectl get pod -o wide (untuk melihat semua pod detail + ip address)
 kubectl describe pod namapod (melihat detail pod)
 kubectl port-forward namapod portAkses:portPod (cara mengakses pod )
 example (kubectl port-forward namapod 8888:80)
+kubectl delete pod namapod (cara menghapus pod)
+kubectl delete pod namapod1 namapod2 namapod3 (cara menghapus lebih dari 1 pod)
+kubectl delete pod -l key=value (hapus pod berdasrkan label)
+example (kubectl delete pod -l environment=development)
+kubectl delete pod --all --namespace nama-namespace (delete semua pod yang ada di dalam namespace)
+
 
 
 ---------------------------- Perintah kubernetes Label ---------------------------------------
@@ -54,6 +60,7 @@ kubectl create -f namafile.yaml --namespace nama-namespace (bikin pod + namespac
 kubectl delete namespace nama-namespace (menghapus namespace)
 
 
+---------------------------- Perintah kubernetes Probe ---------------------------------------
 
 
 
