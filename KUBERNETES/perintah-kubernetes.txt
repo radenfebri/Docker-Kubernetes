@@ -17,6 +17,7 @@ kubectl -n kubernetes-dashboard delete clusterrolebinding admin-user (delete clu
 kubectl get node (untuk melihat semua node)
 kubectl describe node namanode (melihat detail node)
 
+
 ---------------------------- Perintah kubernetes Pod ---------------------------------------
 kubectl create -f filepod.yaml (membuat pod)
 kubectl get pod (untuk melihat semua pod)
@@ -24,6 +25,18 @@ kubectl get pod -o wide (untuk melihat semua pod detail + ip address)
 kubectl describe pod namapod (melihat detail pod)
 kubectl port-forward namapod portAkses:portPod (cara mengakses pod )
 example (kubectl port-forward namapod 8888:80)
+
+
+---------------------------- Perintah kubernetes Label ---------------------------------------
+kubectl get pod --show-labels (melihat pod + labels)
+kubectl.exe label pod namapod key=value (mengganti label)
+example (kubectl.exe label pod nginx environment=development)
+kubectl.exe label pod namapod key=value --overwrite (memaksa untuk merubah label)
+kubectl get pods -l environment (mencari label yang ada environment)
+kubectl get pods -l '!environment' (mencari label yang tidak punya label environment)
+kubectl get pods -l 'environment in (production, development)' (mencari berdasrkan key yang detail)
+
+
 
 kubectl create deployment nginx-depl --image=nginx (membuat deployment nginx)
 kubectl get deployment (menampilkan hasil deployment)
@@ -41,6 +54,4 @@ kubectl port-forward nginx 8080:80 (contoh akes pod testing)
 kubectl get pods --show-labels (melihat pods + labels)
 kubectl label pod nginx environment=development (menambahan label pada pods yang belum mempunyai label)
 kubectl label pod nginx environment=update --overwrite (untuk mengupdate label)
-kubectl get pods -l environment (mencari label yang ada environment)
-kubectl get pods -l '!environment' (mencari label yang tidak punya label environment)
-kubectl get pods -l 'environment in (production, development)' (mencari berdasrkan key yang detail)
+
