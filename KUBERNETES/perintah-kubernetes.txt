@@ -13,7 +13,14 @@ kubectl -n kubernetes-dashboard delete clusterrolebinding admin-user (delete clu
 
 
 
----------------------------- Perintah kubernetes ---------------------------------------
+---------------------------- Perintah kubernetes Node ---------------------------------------
+kubectl get node (untuk melihat semua node)
+kubectl describe node namanode (melihat detail node)
+
+---------------------------- Perintah kubernetes Pod ---------------------------------------
+kubectl get pod (untuk melihat semua pod)
+kubectl describe pod namapod (melihat detail pod)
+
 kubectl create deployment nginx-depl --image=nginx (membuat deployment nginx)
 kubectl get deployment (menampilkan hasil deployment)
 kubectl get pod (menampilkan pod)
