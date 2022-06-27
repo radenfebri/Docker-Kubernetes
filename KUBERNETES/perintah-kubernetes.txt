@@ -64,6 +64,11 @@ kubectl delete namespace nama-namespace (menghapus namespace)
 kubectl create -f namafile.yaml (membuat Probe dengan yaml)
 
 
+---------------------------- Perintah kubernetes Replication Controller ---------------------------------------
+kubectl get replicationcontroller (untukmelihat replicationcontroller)
+kubectl get rc (untukmelihat replicationcontroller)
+
+
 
 kubectl delete -n default deployment mongo-depl (untuk delete deployment "mongo-depl = nama deployment")
 kubectl delete -n default pod mongo-depl-85dcbc595b-wz45j (untuk delete pod "mongo-depl-85dcbc595b-wz45j = nama pod")
