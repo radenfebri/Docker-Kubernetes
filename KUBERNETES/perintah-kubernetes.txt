@@ -42,9 +42,16 @@ kubectl get pods -l 'environment in (production, development)' (mencari berdasrk
 kubectl annotate pod namapod key=value (menambahan Annotation)
 example (kubectl annotate pod nginx-with-label description="saya mencoba menambahkan annotation")
 kubectl annotate pod namapod key=value --overwrite (mengganti Annotation secara paksa)
+kubectl describe namapod (cek sukeses atau tidak)
 
 
-
+---------------------------- Perintah kubernetes Namespace ---------------------------------------
+kubectl get namespace (untuk melihat namespace)
+kubectl get ns (untuk melihat namespace)
+kubectl get pod --namespace nama-namespace (untuk melihat pod berdasrkan namespace)
+kubectl create -f namafile.yaml (bikin file yaml)
+kubectl create -f namafile.yaml --namespace nama-namespace (bikin pod + namespace)
+kubectl delete namespace nama-namespace (menghapus namespace)
 
 
 
@@ -54,9 +61,4 @@ kubectl delete -n default deployment mongo-depl (untuk delete deployment "mongo-
 kubectl delete -n default pod mongo-depl-85dcbc595b-wz45j (untuk delete pod "mongo-depl-85dcbc595b-wz45j = nama pod")
 kubectl exec -it mongo-depl-85dcbc595b-wz45j -- bin/bash (mengakses mongo melalui exec)
 kubectl create -f filepod.yaml (cara bikin pod melalui yaml)
-kubectl port-forward namapod portAkses:portPod
-kubectl port-forward nginx 8080:80 (contoh akes pod testing)
-kubectl get pods --show-labels (melihat pods + labels)
-kubectl label pod nginx environment=development (menambahan label pada pods yang belum mempunyai label)
-kubectl label pod nginx environment=update --overwrite (untuk mengupdate label)
 
