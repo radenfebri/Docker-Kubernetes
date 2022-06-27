@@ -18,6 +18,7 @@ kubectl get node (untuk melihat semua node)
 kubectl describe node namanode (melihat detail node)
 
 ---------------------------- Perintah kubernetes Pod ---------------------------------------
+
 kubectl get pod (untuk melihat semua pod)
 kubectl describe pod namapod (melihat detail pod)
 
