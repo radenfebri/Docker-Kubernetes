@@ -67,6 +67,8 @@ kubectl create -f namafile.yaml (membuat Probe dengan yaml)
 ---------------------------- Perintah kubernetes Replication Controller ---------------------------------------
 kubectl get replicationcontroller (untukmelihat replicationcontroller)
 kubectl get rc (untukmelihat replicationcontroller)
+kubectl delete rc nama-rc (menghapus replicationcontroller)
+kubectl delete rc nama-rc --cascade=false (menghapus replicationcontroller dan pod-nya tidak dihapus)
 
 
 
