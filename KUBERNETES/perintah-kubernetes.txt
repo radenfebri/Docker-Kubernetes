@@ -87,8 +87,10 @@ minikube start --vm-driver=virtualbox (menjalankandi virtualbox)
 minikube start --vm-driver=virtualbox --cpu=2 --memory=2g --disk-size=20g (menjalankan dan merubah spesifikasi minikube berjalan)
 
 
-
-
+---------------------------- Perintah kubernetes Daemon Set ---------------------------------------
+kubectl create -f namafile.yaml (membuat)
+kubectl get daemonset (melihat)
+kubectl delete daemonset nama-daemonset (menghapus)
 
 
 kubectl delete -n default deployment mongo-depl (untuk delete deployment "mongo-depl = nama deployment")
