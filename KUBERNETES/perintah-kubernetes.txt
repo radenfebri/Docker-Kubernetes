@@ -77,6 +77,20 @@ kubectl delete rs nama-rs (menghapus replica set)
 kubectl delete rs nama-rs --cascade=false (menghapus replica set dan pod-nya tidak dihapus)
 kubectl get pod --show-labels (melihat + label)
 
+
+---------------------------- Perintah kubernetes Update Minikube ---------------------------------------
+minikube update-check (cek update terbaru)
+minikube stop (menghentikan minikube)
+minikube delete (menghapus minikube)
+minikube start (menjalankan diatas hyperv)
+minikube start --vm-driver=virtualbox (menjalankandi virtualbox)
+minikube start --vm-driver=virtualbox --cpu=2 --memory=2g --disk-size=20g (menjalankan dan merubah spesifikasi minikube berjalan)
+
+
+
+
+
+
 kubectl delete -n default deployment mongo-depl (untuk delete deployment "mongo-depl = nama deployment")
 kubectl delete -n default pod mongo-depl-85dcbc595b-wz45j (untuk delete pod "mongo-depl-85dcbc595b-wz45j = nama pod")
 kubectl exec -it mongo-depl-85dcbc595b-wz45j -- bin/bash (mengakses mongo melalui exec)
