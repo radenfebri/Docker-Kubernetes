@@ -65,12 +65,17 @@ kubectl create -f namafile.yaml (membuat Probe dengan yaml)
 
 
 ---------------------------- Perintah kubernetes Replication Controller ---------------------------------------
-kubectl get replicationcontroller (untukmelihat replicationcontroller)
+kubectl get replicationcontroller (untuk melihat replicationcontroller)
 kubectl get rc (untukmelihat replicationcontroller)
 kubectl delete rc nama-rc (menghapus replicationcontroller)
 kubectl delete rc nama-rc --cascade=false (menghapus replicationcontroller dan pod-nya tidak dihapus)
 
 
+---------------------------- Perintah kubernetes Replica Set ---------------------------------------
+kubectl get rs (untuk melihat replica set)
+kubectl delete rs nama-rs (menghapus replica set)
+kubectl delete rs nama-rs --cascade=false (menghapus replica set dan pod-nya tidak dihapus)
+kubectl get pod --show-labels (melihat + label)
 
 kubectl delete -n default deployment mongo-depl (untuk delete deployment "mongo-depl = nama deployment")
 kubectl delete -n default pod mongo-depl-85dcbc595b-wz45j (untuk delete pod "mongo-depl-85dcbc595b-wz45j = nama pod")
