@@ -112,6 +112,11 @@ kubectl create -f namafile.yaml (membuat)
 kubectl label node namanode key=value (menambahkan label)
 
 
+---------------------------- Perintah kubernetes All ---------------------------------------
+kubectl get all (menampilkan semua resource)
+kubectl get all --namespace nama-namespace (menampilkan semua resource berdasrkan namespace)
+kubectl delete all --all (delete semua resource)
+kubectl delete all --all --namespace nama-namespace (delete semua resource berdasrkan namespace)
 
 
 
