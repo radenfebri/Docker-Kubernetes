@@ -99,10 +99,14 @@ kubectl get job (melihat)
 kubectl delete job nama-jobs (menghapus)
 
 
+---------------------------- Perintah kubernetes Cron Job ---------------------------------------
+kubectl create -f namafile.yaml (membuat)
+kubectl get cronjob (melihat)
+kubectl delete cronjob nama-cronjobs (menghapus)
+kubectl logs nama-cronjob (melihat logs)
+kubectl describe cronjob nama-cronjob (melihat detail)
 
 
 
-kubectl delete -n default deployment mongo-depl (untuk delete deployment "mongo-depl = nama deployment")
-kubectl delete -n default pod mongo-depl-85dcbc595b-wz45j (untuk delete pod "mongo-depl-85dcbc595b-wz45j = nama pod")
 kubectl exec -it mongo-depl-85dcbc595b-wz45j -- bin/bash (mengakses mongo melalui exec)
 
