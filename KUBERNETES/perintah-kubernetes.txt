@@ -93,6 +93,15 @@ kubectl get daemonset (melihat)
 kubectl delete daemonset nama-daemonset (menghapus)
 
 
+---------------------------- Perintah kubernetes Job ---------------------------------------
+kubectl create -f namafile.yaml (membuat)
+kubectl get job (melihat)
+kubectl delete job nama-jobs (menghapus)
+
+
+
+
+
 kubectl delete -n default deployment mongo-depl (untuk delete deployment "mongo-depl = nama deployment")
 kubectl delete -n default pod mongo-depl-85dcbc595b-wz45j (untuk delete pod "mongo-depl-85dcbc595b-wz45j = nama pod")
 kubectl exec -it mongo-depl-85dcbc595b-wz45j -- bin/bash (mengakses mongo melalui exec)
