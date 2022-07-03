@@ -119,7 +119,13 @@ kubectl delete all --all (delete semua resource)
 kubectl delete all --all --namespace nama-namespace (delete semua resource berdasrkan namespace)
 
 
+---------------------------- Perintah kubernetes Service ---------------------------------------
+kubectl create -f namafile.yaml (membuat)
+kubectl get service (melihat)
+kubectl delete service nama-service (menghapus)
+kubectl exec nama-pod -it -- /bin/sh (mengakses service)
+example (kubectl exec -it curl -- /bin/sh) -> curl nama salah satu pod 
+curl http:://cluster-ip:port/ (mengakses service berbasis web) -> akses via kubernetes saja
 
 
-kubectl exec -it mongo-depl-85dcbc595b-wz45j -- bin/bash (mengakses mongo melalui exec)
 
