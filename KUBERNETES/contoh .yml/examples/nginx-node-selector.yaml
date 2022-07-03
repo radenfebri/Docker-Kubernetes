@@ -4,7 +4,7 @@ metadata:
   name: nginx
 spec:
   nodeSelector:
-    gpu: "true"
+    ssd: "true"
   containers:
     - name: nginx
       image: nginx

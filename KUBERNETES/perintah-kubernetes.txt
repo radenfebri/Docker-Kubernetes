@@ -107,6 +107,14 @@ kubectl logs nama-cronjob (melihat logs)
 kubectl describe cronjob nama-cronjob (melihat detail)
 
 
+---------------------------- Perintah kubernetes Node Selector ---------------------------------------
+kubectl create -f namafile.yaml (membuat)
+kubectl label node namanode key=value (menambahkan label)
+
+
+
+
+
 
 kubectl exec -it mongo-depl-85dcbc595b-wz45j -- bin/bash (mengakses mongo melalui exec)
 
