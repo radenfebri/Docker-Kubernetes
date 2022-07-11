@@ -128,4 +128,10 @@ example (kubectl exec -it curl -- /bin/sh) -> curl nama salah satu pod
 curl http:://cluster-ip:port/ (mengakses service berbasis web) -> akses via kubernetes saja
 
 
-
+---------------------------- Perintah kubernetes Mengakses Service ---------------------------------------
+kubectl exec nama-pod -- env (mengakses environment)
+example (kubectl exec -it curl -- /bin/sh) -> kemudian ketik env
+env | grep NGINX_SERVICE (untuk melihat berdasrkan GROUP)
+nama-service.nama-namespace.svc.cluster.local (mengakses melalui DNS)
+example (curl http://nginx-service.defaault.svc.cluster.local:8080) -> syarat harus tau dengan portnya terlebih dahulu
+kubectl get endpoints (untuk melihat endpoints)
