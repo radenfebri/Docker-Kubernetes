@@ -20,7 +20,7 @@ kubectl logs namapod (melihat logs nginx)
 
 
 ---------------------------- Perintah kubernetes Pod ---------------------------------------
-kubectl create -f filepod.yaml (membuat pod)
+kubectl create -f .\filepod.yaml (membuat pod)
 kubectl get pod (untuk melihat semua pod)
 kubectl get pod -o wide (untuk melihat semua pod detail + ip address)
 kubectl describe pod namapod (melihat detail pod)
@@ -55,13 +55,13 @@ kubectl describe namapod (cek sukeses atau tidak)
 kubectl get namespace (untuk melihat namespace)
 kubectl get ns (untuk melihat namespace)
 kubectl get pod --namespace nama-namespace (untuk melihat pod berdasrkan namespace)
-kubectl create -f namafile.yaml (bikin file yaml)
-kubectl create -f namafile.yaml --namespace nama-namespace (bikin pod + namespace)
+kubectl create -f .\namafile.yaml (bikin file yaml)
+kubectl create -f .\namafile.yaml --namespace nama-namespace (bikin pod + namespace)
 kubectl delete namespace nama-namespace (menghapus namespace)
 
 
 ---------------------------- Perintah kubernetes Probe ---------------------------------------
-kubectl create -f namafile.yaml (membuat Probe dengan yaml)
+kubectl create -f .\namafile.yaml (membuat Probe dengan yaml)
 
 
 ---------------------------- Perintah kubernetes Replication Controller ---------------------------------------
@@ -88,19 +88,19 @@ minikube start --vm-driver=virtualbox --cpu=2 --memory=2g --disk-size=20g (menja
 
 
 ---------------------------- Perintah kubernetes Daemon Set ---------------------------------------
-kubectl create -f namafile.yaml (membuat)
+kubectl create -f .\namafile.yaml (membuat)
 kubectl get daemonset (melihat)
 kubectl delete daemonset nama-daemonset (menghapus)
 
 
 ---------------------------- Perintah kubernetes Job ---------------------------------------
-kubectl create -f namafile.yaml (membuat)
+kubectl create -f .\namafile.yaml (membuat)
 kubectl get job (melihat)
 kubectl delete job nama-jobs (menghapus)
 
 
 ---------------------------- Perintah kubernetes Cron Job ---------------------------------------
-kubectl create -f namafile.yaml (membuat)
+kubectl create -f .\namafile.yaml (membuat)
 kubectl get cronjob (melihat)
 kubectl delete cronjob nama-cronjobs (menghapus)
 kubectl logs nama-cronjob (melihat logs)
@@ -108,7 +108,7 @@ kubectl describe cronjob nama-cronjob (melihat detail)
 
 
 ---------------------------- Perintah kubernetes Node Selector ---------------------------------------
-kubectl create -f namafile.yaml (membuat)
+kubectl create -f .\namafile.yaml (membuat)
 kubectl label node namanode key=value (menambahkan label)
 
 
@@ -120,7 +120,7 @@ kubectl delete all --all --namespace nama-namespace (delete semua resource berda
 
 
 ---------------------------- Perintah kubernetes Service ---------------------------------------
-kubectl create -f namafile.yaml (membuat)
+kubectl create -f .\namafile.yaml (membuat)
 kubectl get service (melihat)
 kubectl delete service nama-service (menghapus)
 kubectl exec nama-pod -it -- /bin/sh (mengakses service)
@@ -135,3 +135,24 @@ env | grep NGINX_SERVICE (untuk melihat berdasrkan GROUP)
 nama-service.nama-namespace.svc.cluster.local (mengakses melalui DNS)
 example (curl http://nginx-service.defaault.svc.cluster.local:8080) -> syarat harus tau dengan portnya terlebih dahulu
 kubectl get endpoints (untuk melihat endpoints)
+
+
+---------------------------- Perintah kubernetes Eksternal Service ---------------------------------------
+kubectl describe service nama-service
+kubectl get endpoints nama-service (melihat service)
+
+
+---------------------------- Perintah kubernetes Service Node Port ---------------------------------------
+kubectl create -f .\service-nginx-nodeport.yaml (create nodeport)
+
+
+---------------------------- Perintah kubernetes Service Load Balancer ---------------------------------------
+kubectl create -f .\service-nginx-loadbalancer.yaml (create loadbalancer)
+
+
+---------------------------- Perintah kubernetes Service Ingress ---------------------------------------
+kubectl create -f .\service-nginx-ingress.yaml (create ingress)
+minikube addons list (untuk melihat addons)
+minikube addons enable ingress (mengkatifkan ingress)
+kubectl get pod --namespace kube-system
+kubectl delete ingress nama-ingress (delete ingress)
