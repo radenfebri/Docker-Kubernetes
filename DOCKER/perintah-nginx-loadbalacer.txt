@@ -1,0 +1,31 @@
+"nginx.conf"
+server {
+    
+    listen 80;
+
+    location / {
+        proxy_pass http://myapp;
+    }
+}
+
+
+"Dockerfile" >> guna untuk menginstall dan merubah package yang ada pada image nginx:alpine
+FROM nginx:alpine
+RUN  rm /etc/nginx/conf.d/*
+COPY nginx.conf /etc/nginx/conf.d/
+
+
+"docker-compose" >> digunakan untuk membuild aplikasi
+version: '3'
+
+services:
+  myapp: ----> myapp nama services
+    image: nginx:alpine
+  myproxy: ----> nama myproxy sesuai dengan nama docker build -t "myproxy" .
+    container_name: myproxy
+    image: myproxy
+    ports:
+      - "80:80"
+
+docker build -t myproxy .
+docker-compose up -d --scale myapp=10 (perintah untuk membuat container dengan jumlah 10) ---> myapp sesuai dengan nama services yang dibuat dalam docker-compose

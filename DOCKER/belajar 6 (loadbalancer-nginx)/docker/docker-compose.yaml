@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  myapp:
+    image: nginx:alpine
+  myproxy:
+    container_name: myproxy
+    image: myproxy
+    ports:
+      - "80:80"
